@@ -40,8 +40,5 @@ class rpcClient(object):
 
 rpc_client = rpcClient()
 
-def mom_list(req):
-    return rpc_client.call(req)
-
-def mom_search(req):
+def mom_service(req):
     return rpc_client.call(req)

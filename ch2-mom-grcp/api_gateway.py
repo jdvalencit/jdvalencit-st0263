@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from threading import Lock
-from mom_rmq.rpc_client import mom_list, mom_search
+from mom_rmq.rpc_client import mom_service
 import json
 
 app = FastAPI()
@@ -9,7 +9,7 @@ is_mom = True
 
 @app.get("/")
 def index():
-    return balance(json.dumps({}))
+    return "Services provided:   /list/ -> Lists all files   /search/{file} -> Searches for specified file"
 
 @app.get("/list")
 def list():
@@ -29,16 +29,8 @@ def balance(req):
     if is_mom == True:
         is_mom = False
         mutex.release()
-
-        if req["service"] == "list":
-            return mom_list(json.dumps(req))
-
-        return mom_search(json.dumps(req))
+        return mom_service(json.dumps(req))
 
     is_mom = True
     mutex.release()
-    # if req["service"] == "list":
-    #    return grcp_list(json.dumps(req))
-    # return grcp_search(json.dumps(req))
-    
     return grcp(json.dumps(req))
