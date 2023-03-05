@@ -27,16 +27,16 @@ def on_request(ch, method, props, body):
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
 def list_service() -> str:
-    result: str = []
-    for paths, dirs, files in os.walk('files'):
+    result: str = ["method: MOM "]
+    for paths, _, files in os.walk('files'):
         result += ["dir: "+paths,"files: "+str(files)]
     return json.dumps(result)
 
 def search_service(file) -> str:
     for paths, _, files in os.walk('files'):
         if file in files:
-            return json.dumps({"file":file,"status":"found","path":paths})
-    return json.dumps({"file":file,"status":"not found"})
+            return json.dumps({"method":"MOM","file":file,"status":"found","path":paths})
+    return json.dumps({"method":"MOM","file":file,"status":"not found","path":""})
 
 channel.basic_qos(prefetch_count=1)
 channel.basic_consume(queue='rpc_server_queue', on_message_callback=on_request)
