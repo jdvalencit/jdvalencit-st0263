@@ -1,6 +1,6 @@
-#!/usr/bin/env python
 import pika
 import uuid
+
 
 class rpcClient(object):
     def __init__(self):
@@ -9,7 +9,8 @@ class rpcClient(object):
 
         self.channel = self.connection.channel()
 
-        result = self.channel.queue_declare(queue='rpc_client_queue', exclusive=True)
+        result = self.channel.queue_declare(
+            queue='rpc_client_queue', exclusive=True)
         self.callback_queue = result.method.queue
 
         self.channel.basic_consume(
@@ -38,7 +39,9 @@ class rpcClient(object):
         self.connection.process_data_events(time_limit=None)
         return self.response
 
+
 rpc_client = rpcClient()
+
 
 def mom_service(req):
     return rpc_client.call(req)

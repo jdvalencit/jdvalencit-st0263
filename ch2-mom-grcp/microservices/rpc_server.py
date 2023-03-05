@@ -28,18 +28,15 @@ def on_request(ch, method, props, body):
 
 def list_service() -> str:
     result: str = []
-    for dirpath, dirnames, files in os.walk('files'):
-        result += ["dir: "+str(dirnames)]
-        for file_name in files:
-            result += [str(file_name)]
-    return str(json.loads(json.dumps(result)))
+    for paths, dirs, files in os.walk('files'):
+        result += ["dir: "+paths,"files: "+str(files)]
+    return json.dumps(result)
 
 def search_service(file) -> str:
-    for dirpath, dirnames, files in os.walk('files'):
-        for file_name in files:
-            if file_name == file:
-                return str(json.loads(json.dumps({"file":file,"status":"found","path":dirpath,"directory":dirnames})))
-    return str(json.loads(json.dumps({"file":file,"status":"not found"})))
+    for paths, _, files in os.walk('files'):
+        if file in files:
+            return json.dumps({"file":file,"status":"found","path":paths})
+    return json.dumps({"file":file,"status":"not found"})
 
 channel.basic_qos(prefetch_count=1)
 channel.basic_consume(queue='rpc_server_queue', on_message_callback=on_request)
