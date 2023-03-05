@@ -1,7 +1,8 @@
+import json
 from fastapi import FastAPI
 from threading import Lock
 from mom_rmq.rpc_client import mom_service
-import json
+from grpc_impl.grpc_client import grpc_service
 
 app = FastAPI()
 mutex = Lock()
@@ -23,10 +24,6 @@ def search(file):
     return balance({"service": "search", "file": file})
 
 
-def grcp(req):
-    return "grcp comming soon"
-
-
 def balance(req):
     global is_mom
     mutex.acquire()
@@ -38,4 +35,4 @@ def balance(req):
 
     is_mom = True
     mutex.release()
-    return grcp(json.dumps(req))
+    return json.loads(grpc_service(json.dumps(req)))
