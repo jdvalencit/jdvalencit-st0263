@@ -82,7 +82,7 @@ Este archivo de configuración cuenta con la dirección de los archivos con los 
 
 ********************Configuración Nginx:******************** adicionalmente, el proyecto también cuenta con un archivo de configuración de nginx en la dirección `/etc/nginx/sites-enabled/fastapi_nginx`
 
-```json
+```
 server {
         listen 80;
         server_name 52.203.226.106;
