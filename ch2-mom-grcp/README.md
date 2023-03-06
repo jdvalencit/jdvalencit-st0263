@@ -22,17 +22,16 @@ Por otro lado, para integrar el servicio RabbitMQ con la API Gateway, se creó u
 - La API Gateway debe ser capaz de buscar un archivo concreto en una carpeta especificada en la configuración, esto implementados en ambos microservicios.
 - Tanto la API Gateway como los dos microservicios deben soportar múltiples peticiones simultaneas y dar respuesta a todas ellas.
 
-### 1.2. Aspectos por cumplir
-
-- Se puede presentar un despliegue más profesional usando herramientas como docker.
-- Realizar un script bootstrap que pueda encender el sistema al iniciar el equipo, en lugar de presentar un script manual para hacerlo.
-
 ### 2. Estructura de la aplicación
 
 ```mermaid
-graph TD
-		API_GateWay --> MOM --> microservicio1
-	  API_GateWay --> gRPC --> microservicio2
+stateDiagram-v2
+		Cliente --> API_GateWay: request 
+		API_GateWay --> MOM: request
+		API_GateWay --> gRPC: request
+		MOM --> API_GateWay: response
+		gRPC --> API_GateWay: response
+		API_GateWay--> Cliente:response 
 		
 ```
 
@@ -60,25 +59,44 @@ Este archivo se encarga de activar todos los recursos y necesarios para la corre
 
 **3.3 Configuración**
 
-El proyecto cuenta con archivos config.json ubicados en diferentes puntos para ser usados como archivos de configuración.
+**************************************************Conifguración principal:************************************************** el proyecto cuenta con un archivo config.json ubicado en la carpeta principal del proyecto ([ch2-mom-grcp/config.json](https://github.com/jdvalencit/jdvalencit-st0263/blob/main/ch2-mom-grcp/config.json)****)****
 
-El proyecto cuenta con los siguientes archivos:
+```json
+{
+    "dir_path": "/home/ubuntu/jdvalencit-st0263/ch2-mom-grcp/microservices/files",
 
-- Configuración del cliente de la comunicación rpc de rabbiMQ
+    "mom_client_host":"localhost",
+    "mom_client_port":5672,
+    "mom_server_host":"localhost",
+    "mom_server_port":5672,
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9bb32869-b153-4ccf-ae53-086971a20c72/Untitled.png)
+    "grpc_client_host":"localhost",
+    "grpc_client_port":"50051",
+    "grpc_server_host":"[::]",
+    "grpc_server_port":"50051",
+    "grpc_workers":10
+}
+```
 
-- Configuración para los dos microservicios (RPC y gRPC)
+Este archivo de configuración cuenta con la dirección de los archivos con los cuales se realizarán las funciones establecidas en la API GateWay, también cuenta con todos los hosts y puertos necesarios para la conexión de los clientes y los servidores tanto de gRPC y de RPC por medio de RabbitMQ.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/533f8b49-cb4c-40bd-8a07-96aaef35b8e3/Untitled.png)
+********************Configuración Nginx:******************** adicionalmente, el proyecto también cuenta con un archivo de configuración de nginx en la dirección `/etc/nginx/sites-enabled/fastapi_nginx`
 
-- Configuración del cliente de la comunicación gRPC.
+```json
+server {
+        listen 80;
+        server_name 52.203.226.106;
+        location / {
+                proxy_pass http://127.0.0.1:8000;
+        }
+}
+```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b017134d-3676-4b24-92a2-f2ebc1173373/Untitled.png)
+Este archivo de configuración se encarga de utilizar nginx para escuchar las peticiones en el puerto 80 de la dirección IP 52.203.226.106 y enviarlas al puerto 8000 de la IP 127.0.0.1 (localhost) donde se encuentra nuestra API GateWay
 
 **3.4 Estructura completa de directorios**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/99c01d11-74d3-464e-9481-1884bfd7bf7a/Untitled.png)
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1a33c265-e5b9-499a-88f1-79171fd9d67b/Untitled.png)
 
 ### 4. IP del proyecto
 
