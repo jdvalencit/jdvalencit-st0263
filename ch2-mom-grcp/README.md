@@ -96,7 +96,7 @@ Este archivo de configuración se encarga de utilizar nginx para escuchar las pe
 
 **3.4 Estructura completa de directorios**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1a33c265-e5b9-499a-88f1-79171fd9d67b/Untitled.png)
+![directorios](https://user-images.githubusercontent.com/61478711/223259045-1bab4aa8-7f73-400c-851f-59b167ebdf29.png)
 
 ### 4. IP del proyecto
 
