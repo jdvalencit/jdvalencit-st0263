@@ -1,11 +1,13 @@
 import pika
 import uuid
+import json
 
+config = json.load(open(r'C:\Users\jdtor\Documents\code\jdvalencit-st0263\ch2-mom-grcp\mom_rmq\config.json', 'r'))
 
 class rpcClient(object):
     def __init__(self):
         self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host='localhost'))
+            pika.ConnectionParameters(host=config['host']))
 
         self.channel = self.connection.channel()
 

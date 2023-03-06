@@ -1,0 +1,6 @@
+{
+  "dir_path": "C:/Users/jdtor/Documents/code/jdvalencit-st0263/ch2-mom-grcp/microservices/files",
+  "mom_host":"localhost",
+  "grpc_workers":10,
+  "grpc_port":"50051"
+}

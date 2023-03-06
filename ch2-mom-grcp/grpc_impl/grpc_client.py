@@ -3,6 +3,8 @@ import grpc
 from grpc_impl import grpc_service_pb2
 from grpc_impl import grpc_service_pb2_grpc
 
+config = json.load(open(r"C:\Users\jdtor\Documents\code\jdvalencit-st0263\ch2-mom-grcp\grpc_impl\config.json", 'r'))
+
 def list(stub):
     response = stub.list(grpc_service_pb2.list_req())
     res = {"method":response.method,"list":"".join(response.files)}
@@ -15,7 +17,7 @@ def search(stub, file):
     
 
 def grpc_service(req):
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(f"{config['host']}:{config['port']}") as channel:
         stub = grpc_service_pb2_grpc.fileServicesStub(channel)
         smg = json.loads(req)
         serv = smg["service"]
