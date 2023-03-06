@@ -1,12 +1,12 @@
 import grpc
-import sys
 import os
 import json
-from concurrent import futures
 import grpc_service_pb2
 import grpc_service_pb2_grpc
+from concurrent import futures
 
-config = {}
+config = json.load(open(r'/home/ubuntu/jdvalencit-st0263/ch2-mom-grcp/config.json', 'r'))
+
 
 class fileServices(grpc_service_pb2_grpc.fileServicesServicer):
     def list(self, request, context):
@@ -35,21 +35,16 @@ class fileServices(grpc_service_pb2_grpc.fileServicesServicer):
         )
 
 
-def main(argv):
-    global config
-    if len(argv) == 2:
-        config_path = argv[1]
-        config = json.load(open(config_path, 'r'))
+def main():
+    server = grpc.server(futures.ThreadPoolExecutor(
+        max_workers=config['grpc_workers']))
+    grpc_service_pb2_grpc.add_fileServicesServicer_to_server(
+        fileServices(), server)
 
-        server = grpc.server(futures.ThreadPoolExecutor(
-            max_workers=config['grpc_workers']))
-        grpc_service_pb2_grpc.add_fileServicesServicer_to_server(
-            fileServices(), server)
-
-        server.add_insecure_port(f"[::]:{config['grpc_port']}")
-        server.start()
-        server.wait_for_termination()
+    server.add_insecure_port(f"{config['grpc_server_host']}:{config['grpc_server_port']}")
+    server.start()
+    server.wait_for_termination()
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()

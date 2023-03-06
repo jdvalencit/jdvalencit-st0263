@@ -1,0 +1,14 @@
+{
+    "dir_path": "/home/ubuntu/jdvalencit-st0263/ch2-mom-grcp/microservices/files",
+
+    "mom_client_host":"localhost",
+    "mom_client_port":5672,
+    "mom_server_host":"localhost",
+    "mom_server_port":5672,
+
+    "grpc_client_host":"localhost",
+    "grpc_client_port":"50051",
+    "grpc_server_host":"[::]",
+    "grpc_server_port":"50051",
+    "grpc_workers":10
+}
