@@ -49,13 +49,7 @@ stateDiagram-v2
 
 **3.2 Compilación y ejecución**
 
-Al ser desarrollado en python no se debe compilar ningún archivo, solo se debe correr el archivo [start.sh](http://start.sh) presente en /home/ubuntu
-
-```bash
-/home/ubuntu:~$ ./start.sh
-```
-
-Este archivo se encarga de activar todos los recursos y necesarios para la correcta ejecución del proyecto.
+Al ser desarrollado en python no se debe compilar ningún archivo, aunque el proyecto cuenta con un archivo [start.sh]([http://start.sh](https://github.com/jdvalencit/jdvalencit-st0263/blob/main/ch2-mom-grcp/start.sh)) encargado de ejecutar los comandos necesarios para la ejecución de los servicios, la instancia de aws tiene un script bootstrap que realiza esta misma tarea al momento de iniciar la instancia para una mayor facilidad a la hora de utilizar el proyecto. 
 
 **3.3 Configuración**
 
