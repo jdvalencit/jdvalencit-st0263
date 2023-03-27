@@ -1,0 +1,11 @@
+1. Instalamos el cliente de nfs
+    $ sudo apt install nfs-common
+
+2. Creamos el directorio para montar el nfs
+    $ sudo mkdir -p /mnt/wordpress
+
+3. Montamos el directorio del host de nfs con el directorio que acabamos de crear
+    $ sudo mount 10.128.0.2:/var/nfs/general /mnt/wordpress
+
+4. Editamos el archivo /etc/fstab para que el montaje se realice automáticamente al iniciar la instancia
+    10.128.0.2:/var/nfs/general    /mnt/wordpress   nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0

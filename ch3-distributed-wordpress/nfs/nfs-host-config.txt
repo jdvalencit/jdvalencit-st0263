@@ -1,0 +1,15 @@
+1. Instalamos el nfs server
+    $ sudo apt install nfs-kernel-server
+
+2. Creamos el directorio a compartir
+    $ sudo mkdir /var/nfs/general -p
+
+3. Cambiamos la propiedad del directorio al grupo novody:nogroup
+    $ sudo chown nobody:nogroup /var/nfs/general
+    
+4. Editamos el archivo /etc/exports para exportar el nfs añadiendo las siguientes entradas:
+    /var/nfs/general    10.128.0.3/16(rw,sync,no_root_squash,no_subtree_check)
+    /var/nfs/general    10.128.0.5/16(rw,sync,no_root_squash,no_subtree_check)
+
+5. Reiniciamos el nfs server
+    $ sudo systemctl restart nfs-kernel-server
