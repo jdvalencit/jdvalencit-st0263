@@ -31,8 +31,7 @@ graph TD
 	WordPress2 --> MySql
 	WordPress2 --> NFS
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/993c0818-fb00-4882-85ad-be607606d2fc/Untitled.png)
+![instancias](https://user-images.githubusercontent.com/61478711/228084306-451a83a3-aa29-46b2-8ef1-dd462ecb3b73.png)
 
 ### 3. Ambiente de desarrollo
 
@@ -181,7 +180,7 @@ http {
 
 **3.4 Estructura completa de directorios**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0cb25616-9403-4cc0-9e8b-0ec87b505e7b/Untitled.png)
+![directorios](https://user-images.githubusercontent.com/61478711/228084428-e4c8ef5d-1624-4161-8156-212725b699d6.png)
 
 ### 4. IP del proyecto
 
@@ -191,7 +190,7 @@ Para el desarrollo del proyecto se hizo uso de cinco ips estáticas privadas par
 
 Si entramos a `https://dominuwu.online`tendrémos acceso a la página de wordpress desplegada en las dos instancias.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/24cce7f3-5622-42c2-929f-a14db8de64eb/Untitled.png)
+![pagina](https://user-images.githubusercontent.com/61478711/228084498-4da9c9b4-3e99-4cf6-aa58-5dd7e19ba31d.png)
 
 ### Referencias:
 
