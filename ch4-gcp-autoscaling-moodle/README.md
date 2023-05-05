@@ -5,7 +5,7 @@ Presentado por:
 - David Cardona Nieves, [djcardonan@eafit.edu.co](mailto:djcardonan@eafit.edu.co)
 
 Presentado a:
-- Edwin Nelson Montoya Múnero, [emontoya@eafit.edu.co](mailto:emontoya@eafit.edu.co)
+- Edwin Nelson Montoya Munera, [emontoya@eafit.edu.co](mailto:emontoya@eafit.edu.co)
 ```
 
 ## 1) Descripción
