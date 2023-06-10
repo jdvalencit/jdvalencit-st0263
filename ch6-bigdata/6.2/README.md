@@ -9,7 +9,8 @@
 ![image](https://github.com/jdvalencit/jdvalencit-st0263/assets/61478711/dbf4161e-0687-4b63-9b3b-f3da68f020eb)
 ![image](https://github.com/jdvalencit/jdvalencit-st0263/assets/61478711/3ec726f9-6684-4e6c-a034-8fce1a9925ba)
 ### 2,3. Análisis exploratorio de datos en dataframes.
-Jupyter Notebook: https://github.com/jdvalencit/jdvalencit-st0263/blob/main/ch6-bigdata/6.2/Lab%206.2.ipynb
+Jupyter Notebook: https://github.com/jdvalencit/jdvalencit-st0263/blob/main/ch6-bigdata/6.2/Lab6.2_jupyter.ipynb
+     
 
 Google colab: https://github.com/jdvalencit/jdvalencit-st0263/blob/main/ch6-bigdata/6.2/Lab6.2_colab.ipynb
 ### 4. Guardar datos
